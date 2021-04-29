@@ -44,6 +44,7 @@
 * PUT'/users/:id/edit', user can edit their account
 * POST'/songs/', user can add their own song
 * GET '/songs/', user can see all songs
+* GET '/songs/:id', user can see one song
 * DELETE '/songs/:id/', user can delete their song
 * DELETE '/users/:id/', user can delete their account
 
