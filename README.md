@@ -40,7 +40,6 @@
 * GET '/users', user can log in
 * POST'/users', user can sign up 
 * GET'/users/songs, user can access their songs
-* PUT'/songs/edit', user can edit their song
 * POST'/songs/:id/lyrics', user can add lyrics to a community song
 * PUT'/users/edit', user can edit their account
 * POST'/songs', user can add their own song
