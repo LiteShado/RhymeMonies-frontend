@@ -40,13 +40,13 @@
 * POST'/user', user can sign up 
 * GET'/user/song, user can access their songs
 * PUT'/song/:id/edit', user can edit their song
-* POST'/song/:id/add', user can add lyrics to a community song
+* POST'/song/:id/lyrics', user can add lyrics to a community song
 * PUT'/user/:id/edit', user can edit their account
-* POST'/song', user can add their own song
-* GET '/song/all', user can see all songs
+* POST'/song/', user can add their own song
+* GET '/song/', user can see all songs
 * DELETE '/song/:id/', user can delete their song
 * DELETE '/user/:id/', user can delete their account
-* GET'/logout', user can sign out of the account
+
 
 
 ## MVP
