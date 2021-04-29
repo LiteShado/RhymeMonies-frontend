@@ -39,16 +39,16 @@
 * GET'/', Home
 * GET '/users', user can log in
 * POST'/users', user can sign up 
-* GET'/users/:id/songs, user can access their songs
-* PUT'/songs/:id/edit', user can edit their song
+* GET'/users/songs, user can access their songs
+* PUT'/songs/edit', user can edit their song
 * POST'/songs/:id/lyrics', user can add lyrics to a community song
-* PUT'/users/:id/edit', user can edit their account
+* PUT'/users/edit', user can edit their account
 * POST'/songs', user can add their own song
 * GET '/songs', user can see all songs
 * GET '/songs/:id', user can see one song
 * GET '/songs/:id/lyrics', user can see all lyrics of a song
 * DELETE '/songs/:id/', user can delete their song
-* DELETE '/users/:id/', user can delete their account
+* DELETE '/users', user can delete their account
 
 
 
