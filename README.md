@@ -39,7 +39,7 @@
 * GET'/', Home
 * GET '/users', user can log in
 * POST'/users', user can sign up 
-* GET'/users/songs, user can access their songs
+* GET'/users/:id/songs, user can access their songs
 * PUT'/songs/:id/edit', user can edit their song
 * POST'/songs/:id/lyrics', user can add lyrics to a community song
 * PUT'/users/:id/edit', user can edit their account
