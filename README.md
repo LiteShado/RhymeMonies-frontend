@@ -37,15 +37,15 @@
 ## HTTP Routes
 
 * GET'/', user sign in
-* POST'/user', user can sign up 
-* GET'/user/song, user can access their songs
-* PUT'/song/:id/edit', user can edit their song
-* POST'/song/:id/lyrics', user can add lyrics to a community song
-* PUT'/user/:id/edit', user can edit their account
-* POST'/song/', user can add their own song
-* GET '/song/', user can see all songs
-* DELETE '/song/:id/', user can delete their song
-* DELETE '/user/:id/', user can delete their account
+* POST'/users', user can sign up 
+* GET'/users/songs, user can access their songs
+* PUT'/songs/:id/edit', user can edit their song
+* POST'/songs/:id/lyrics', user can add lyrics to a community song
+* PUT'/users/:id/edit', user can edit their account
+* POST'/songs/', user can add their own song
+* GET '/songs/', user can see all songs
+* DELETE '/songs/:id/', user can delete their song
+* DELETE '/users/:id/', user can delete their account
 
 
 
