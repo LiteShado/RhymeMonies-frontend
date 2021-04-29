@@ -46,6 +46,7 @@
 * POST'/songs', user can add their own song
 * GET '/songs', user can see all songs
 * GET '/songs/:id', user can see one song
+* GET '/songs/:id/lyrics', user can see all lyrics of a song
 * DELETE '/songs/:id/', user can delete their song
 * DELETE '/users/:id/', user can delete their account
 
