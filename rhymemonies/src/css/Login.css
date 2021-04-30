@@ -1,0 +1,17 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+  }
+  .loginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: darkred;
+    border-radius: 10px;
+  }
+  form * {
+    margin: 7px 0;
+    font-size: 1.7rem;
+  }
