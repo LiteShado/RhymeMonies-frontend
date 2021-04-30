@@ -5,31 +5,31 @@ import {Link} from 'react-router-dom'
 // import '../css/Music.css'
 
 const Songs = () => {
-    const[allTheSongs,setAllTheSongs] = useState(null)
-    const getAllTheSongs = async() => {
-        try {
-            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/songs`,
-            setAllTheSongs(res.data.songs)
-            )} catch (error) {
-            console.log(error)
-        }
 
+    const[allTheSongs,setAllTheSongs] = useState([])
+
+    const getAllTheSongs = () => {
+
+             axios.get(`${process.env.REACT_APP_BACKEND_URL}/songs`).then((response) => {
+                setAllTheSongs(response.data)
+            })
     }
-    useEffect(() => {
-        getAllTheSongs()
-    },[])
+
+    useEffect(getAllTheSongs, [])
 
     return (
-        <>
-        <h1>Check Out These Songs from the Community!</h1>
-        {allTheSongs && allTheSongs.map((song, i) =>
-            <Songs
-                song = {song}
-                key={song.id}
-                preview = "true"
-            />
-        )}
-        </>
+        <div>
+        <h1>Check Out These from the Community!</h1>
+        <ul>
+        {allTheSongs.map((song) => {
+            return (
+                <li key={song.id}>
+                    <Link to={`/songs/${song.id}`}>{song.title}</Link>
+                </li>
+            )
+            })}
+        </ul>
+        </div>
     )
 }
 export default Songs

@@ -37,6 +37,8 @@ function App() {
     userInfo()
   }, [])
 
+  console.log(user)
+
   return (
     <div>
       <Navbar />
@@ -48,35 +50,33 @@ function App() {
         }}
       />
       <Route exact path="/users">
-        { user ?
-          <Redirect to="/" />
+        { user.id ?
+          <Redirect to="/songs" />
         :
          <Login />
         }
       </Route>
       <Route exact path="/users/new">
-      { user ?
-        <Redirect to="/" />
+      { user.id ?
+        <Redirect to="/songs" />
       :
         <Signup />
       }
       </Route>
 
-      <Switch>
         <Route exact path="/songs">
-          {user &&
+          {user.id &&
           <Songs />
           }
         </Route>
         <Route exact path="/songs/new">
-          {user &&
+          {user.id &&
           <New />
           }
         </Route>
-      </Switch>
 
       <Route exact path="/songs/:id">
-          {user &&
+          {user.id &&
           <MySongs />
           }
         </Route>

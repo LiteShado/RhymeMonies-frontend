@@ -13,7 +13,7 @@ const Navbar = () => {
     }
     return (
         <ul>
-        {user ?
+        {user.id ?
         <>
             <li>
                 <Link

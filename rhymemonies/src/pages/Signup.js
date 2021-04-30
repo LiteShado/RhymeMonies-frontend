@@ -14,6 +14,9 @@ const Signup = () => {
 
     const signupSubmit = async (e) => {
         e.preventDefault()
+
+        console.log(process.env.REACT_APP_BACKEND_URL)
+        
         let res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/users/new`, {
             name: name,
             email: email,
