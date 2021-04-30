@@ -12,7 +12,7 @@ const Login = () => {
 
     const loginSubmit = async (e) => {
         e.preventDefault()
-        let res = await axios.get('http://localhost:3001/users', {
+        let res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users`, {
             email: email,
             password: password
         })

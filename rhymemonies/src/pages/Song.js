@@ -8,9 +8,9 @@ const Songs = () => {
     const[allTheSongs,setAllTheSongs] = useState(null)
     const getAllTheSongs = async() => {
         try {
-            const res = await axios.get('http://localhost:3001/songs')
+            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/songs`,
             setAllTheSongs(res.data.songs)
-        } catch (error) {
+            )} catch (error) {
             console.log(error)
         }
 

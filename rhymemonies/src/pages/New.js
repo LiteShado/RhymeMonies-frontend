@@ -9,7 +9,7 @@ const New = () => {
         e.preventDefault()
         try {
             let auth = localStorage.getItem('userId')
-            let res = await axios.post('http://localhost:3001/songs',
+            let res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/songs`,
 
             {
                 title: title,
