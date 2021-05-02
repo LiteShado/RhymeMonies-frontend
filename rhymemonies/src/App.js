@@ -11,6 +11,7 @@ import MySongs from './pages/MySongs'
 import Profile from './pages/Profile'
 import SongChoice from './pages/SongChoice'
 import Home from './pages/Home'
+import Lyric from './pages/Lyric'
 import {Route, Redirect, Switch} from 'react-router-dom'
 import env from 'react-dotenv'
 
@@ -94,6 +95,11 @@ function App() {
       <Route exact path="/songs/:id">
           {user.id &&
           <SongChoice />
+          }
+      </Route>
+      <Route exact path="/songs/:id/lyrics">
+          {user.id &&
+          <Lyric />
           }
       </Route>
 

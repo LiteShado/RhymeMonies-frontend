@@ -4,22 +4,95 @@ import axios from 'axios'
 import {Link} from 'react-router-dom'
 // import '../css/Music.css'
 import env from 'react-dotenv'
-import {useParams} from 'react-router-dom'
+import { useParams, Redirect } from 'react-router-dom'
 
 const Lyric = () => {
 
-    // const params = useParams()
-    // const history = useHistory()
+    const[allLyric,setAllLyric] = useState({})
+
+    const params = useParams()
+    const history = useHistory()
+    const [shouldRedirect, setShouldRedirect] =
+    useState(null)
+
+    const getAllLyric = () => {
+
+        axios.get(`${env.API_URL}/songs/${params.id}/lyrics`).then((response) => {
+           console.log(response)
+           setAllLyric(response.data)
+       })
+}
+    useEffect(getAllLyric, [])
+
+    const [lyric, setLyric] = useState({
+        lyric: ''
+    })
+
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setLyric({
+            ...lyric,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios.post(`${env.API_URL}/songs/${params.id}/lyrics`, lyric).then((response) => {
+            console.log(response);
+        })
+        setShouldRedirect(response.data.id)
+        }
 
 
     // .then(() ={
     //     history.push('/songs/{params.id}')
 
-    return (
-        <div>
-        Lyrics
-        </div>
-    )
-}
+                //     {/* <button onClick={() => {
+                //     axios.get(`${env.API_URL}/songs/${params.id}`)
+                // }}>View Song</button>
+                // <button onClick={() => {
+                //     axios.get(`${env.API_URL}/songs/${params.id}/lyrics`)
+                // }}>Add Lyrics</button> */}
 
+        return (
+            <div>
+            <h1>Here Are the Lyrics</h1>
+            <ul>
+                <div>
+                    {allLyric.map((lyric) => {
+                        return (
+                        <div>
+                            <li key={lyric.id}>
+                                <Link to={`/songs/${params.id}/lyrics`}>{lyric.lyric}</Link>
+                            </li>
+                                <Link to={`/songs/${params.id}/lyrics`}>View Lyrics</Link>
+
+                            {/* <button onClick={() => {
+                                axios.get(`${env.API_URL}/songs/${params.id}`)
+                            }}>View Song</button>
+                            <button onClick={() => {
+                                axios.get(`${env.API_URL}/songs/${params.id}/lyrics`)
+                            }}>Add Lyrics</button> */}
+                        </div>
+                        )
+                        })}
+                        </div>
+                            <h1>Add Your Lyrics:</h1>
+                                <form onSubmit={handleSubmit}>
+                                    <div>
+                                        <label htmlFor="new-lyric">Lyrics:</label>
+                                        <input type="text" placeholder="lyrics" name="lyric" value={lyric.lyric} onChange={handleChange}
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <input type="submit" value="submit" />
+                                    </div>
+
+                                </form>
+                            </ul>
+                            </div>
+        )
+}
 export default Lyric

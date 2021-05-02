@@ -1,13 +1,15 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios'
-=import env from 'react-dotenv'
+import env from 'react-dotenv'
 import {useParams, useHistory} from 'react-router-dom'
+import {Link} from 'react-router-dom'
+
 
 const SongChoice = () => {
 
     const[allSongs,setAllSongs] = useState({})
     const params = useParams()
-    const history = useHistory()
+    // const history = useHistory()
 
 
     const getAllSongs = () => {
@@ -25,12 +27,13 @@ const SongChoice = () => {
         <h1>Created by Members of the Community!</h1>
             <div>Title: {song.title}</div>
             <div>Genre: {song.genre}</div>
-            <button onClick={() => {
+            {/* <button onClick={() => {
                     axios.get(`${env.API_URL}/songs/${params.id}/lyrics`)
                 }}>View Lyrics</button>
             <button onClick={() => {
                     axios.post(`${env.API_URL}/songs/${params.id}/lyrics`)
-                }}>Add Lyrics</button>
+                }}>Add Lyrics</button> */}
+            <Link to={`/songs/${params.id}/lyrics`}>View Lyrics</Link>
         </div>
     )
 }

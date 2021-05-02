@@ -33,12 +33,14 @@ const Songs = () => {
                 <li key={song.id}>
                     <Link to={`/songs/${song.id}`}>{song.title}</Link>
                 </li>
-                <button onClick={() => {
+                            <Link to={`/songs/${params.id}/lyrics`}>View Lyrics</Link>
+
+                {/* <button onClick={() => {
                     axios.get(`${env.API_URL}/songs/${params.id}`)
                 }}>View Song</button>
                 <button onClick={() => {
                     axios.get(`${env.API_URL}/songs/${params.id}/lyrics`)
-                }}>Add Lyrics</button>
+                }}>Add Lyrics</button> */}
                 </div>
             )
             })}
