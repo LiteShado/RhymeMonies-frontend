@@ -1,8 +1,11 @@
-import env from 'react-dotenv'
-
 const Home = () => {
+
     return (
-        <div>Home</div>
+        <div className="welcome">
+            <h1>Welcome to RhymeMonies</h1>
+                <h2>Please sign up or login to continue</h2>
+        </div>
+
     )
 }
 

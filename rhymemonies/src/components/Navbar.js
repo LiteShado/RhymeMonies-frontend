@@ -20,7 +20,7 @@ const Navbar = () => {
             <li ><Link className="navLink" to="/songs/new">Add Song To Community</Link></li>
             <li ><Link className="navLink" to="/users/songs">My Songs</Link></li>
             <li ><Link className="navLink" to="/users/edit">My Profile</Link></li>
-            <li  onClick={() => logout()}><Link className="navLink" to="/login">Logout</Link></li>
+            <li  onClick={() => logout()}><Link className="navLink" to="/">Logout</Link></li>
             </>
             :
             <>

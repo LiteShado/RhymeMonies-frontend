@@ -50,16 +50,11 @@ function App() {
       <Navbar />
       <Route
         path="/"
-        exact
-        render = {() => {
-          return <Redirect to="/users" />
-        }}
-      />
-      <Route exact path="/">
+        exact>
         { user.id ?
         <Redirect to="/songs" />
         :
-         <Home />
+        <Home />
         }
       </Route>
       <Route
