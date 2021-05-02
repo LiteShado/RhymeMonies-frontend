@@ -18,8 +18,12 @@ const Login = () => {
             password: password
         })
         console.log(res)
-        console.log(user)
         localStorage.setItem('userId', res.data.user.id)
+        localStorage.setItem('name', res.data.user.name)
+        localStorage.setItem('email', res.data.user.email)
+        localStorage.setItem('password', res.data.user.password)
+        localStorage.setItem('id', res.data.user.id)
+
         setUser(res.data.user)
     }
 

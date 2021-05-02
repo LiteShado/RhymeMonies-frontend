@@ -5,22 +5,16 @@ import {useParams, useHistory} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 
 
-const SongChoice = () => {
+const SongChoice = (props) => {
+    const [song, setSong] = useState({})
 
-    // const[allSongs,setAllSongs] = useState({})
-    // const params = useParams()
-    // // const history = useHistory()
+    const fetchSong = () => {
+        axios.get(`${env.API_URL}/songs/${props.id}`).then((response) => {
+            setSong(response.data)
+        })
+    }
 
-
-    // const getAllSongs = () => {
-
-    //          axios.get(`${env.API_URL}/${params.id}`).then((response) => {
-    //             console.log(response)
-    //             setAllSongs(response.data)
-    //         })
-    // }
-
-    // useEffect(getAllSongs, [])
+    useEffect(fetchSong, [])
 
     return (
         <div>

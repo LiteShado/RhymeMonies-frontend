@@ -44,39 +44,41 @@ const Lyric = () => {
 //         setShouldRedirect(response.data.id)
 //         }
 
+// const [lyric, setLyric] = useState({})
 
-        return (
-            <div>
-            <h1>Here Are the Lyrics</h1>
-            {/* <ul>
-                <div>
-                    {allLyric.map((lyric) => {
-                        return (
-                        <div>
-                            <li key={lyric.id}>
-                                <Link to={`/songs/${params.id}/lyrics`}>{lyric.lyric}</Link>
-                            </li>
-                                <Link to={`/songs/${params.id}/lyrics`}>View Lyrics</Link>
 
-                        </div>
-                        )
-                        })}
-                        </div>
-                            <h1>Add Your Lyrics:</h1>
-                                <form onSubmit={handleSubmit}>
-                                    <div>
-                                        <label htmlFor="new-lyric">Lyrics:</label>
-                                        <input type="text" placeholder="lyrics" name="lyric" value={lyric.lyric} onChange={handleChange}
-                                        />
-                                    </div>
 
-                                    <div>
-                                        <input type="submit" value="submit" />
-                                    </div>
+        // return (
+            // <div>
+            // <h1>Here Are the Lyrics</h1>
+            // <ul>
+            //     <div>
+            //         {allLyric.map((lyric) => {
+            //             return (
+            //             <div>
+            //                 <li key={lyric.id}>
+            //                     <Link to={`/songs/${params.id}/lyrics`}>{lyric.lyric}</Link>
+            //                 </li>
+            //                     <Link to={`/songs/${params.id}/lyrics`}>View Lyrics</Link>
 
-                                </form>
-                            </ul> */}
-                            </div>
-        )
+            //             </div>
+            //             )
+            //             })}
+            //             </div>
+                // <h1>Add Your Lyrics:</h1>
+                //     <form onSubmit={handleSubmit}>
+                //         <div>
+                //             <label htmlFor="new-lyric">Lyrics:</label>
+                //             <input type="text" placeholder="lyrics" name="lyric" value={lyric.lyric} onChange={handleChange}
+                //             />
+                //         </div>
+
+                //     <input type="submit" value="submit" />
+
+                //     </form>
+       // </ul>
+            // </div>
+//         )
+
 }
 export default Lyric

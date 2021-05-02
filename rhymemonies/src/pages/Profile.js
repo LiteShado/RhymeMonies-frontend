@@ -41,7 +41,7 @@ const Profile = () => {
 //         axios.put(`${env.API_URL}/users/edit`, user).then((response) => {
 //             console.log(response);
 //         })
-//         setShouldRedirect()
+//         Redirect()
 //         }
 
 

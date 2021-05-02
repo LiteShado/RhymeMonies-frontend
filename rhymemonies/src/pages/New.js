@@ -1,62 +1,57 @@
-import { useState } from 'react'
+import {useState, useContext} from 'react'
+import {UserContext} from '../context/UserContext'
 import axios from 'axios'
-import { Redirect, useHistory } from 'react-router-dom'
-import env from "react-dotenv"
+import '../css/Login.css'
+import env from 'react-dotenv'
 
 const New = () => {
-    // const [shouldRedirect, setShouldRedirect] =
-    // useState(null)
+    const {userState} = useContext(UserContext)
+    const [song,setSong] = userState
 
-    // const [song, setSong] = useState({
-    //     title: '',
-    //     genre: '',
-    //     userId: ''
-    // })
+    const [title,setTitle] = useState('')
+    const [genre,setGenre] = useState('')
+    const [userId,setUserId] = useState('')
 
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target
-    //     setSong({
-    //         ...song,
-    //         [name]: value
-    //     })
-    // }
+    const signupSubmit = async (e) => {
+        e.preventDefault()
+        // let user = localStorage.getItem('userId')
+        let id = localStorage.getItem('userId')
+        console.log(id)
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     axios.post(`${env.API_URL}/songs/new`, song).then((response) => {
-    //         console.log(response);
-    //     })
-    //     setShouldRedirect(response.data.id)
-    //     }
+        let res = await axios.post(`${env.API_URL}/songs/new`, {
+            title: title,
+            genre: genre,
+            userId: id
+        })
+        console.log(res)
+        localStorage.setItem('title', res.data.song.title)
+        localStorage.setItem('genre', res.data.song.genre)
 
+        setSong(res.data.song)
+        // localStorage.setItem('userId', res.data.user.id)
+    }
 
-return (
+    return (
         <div>
-            {/* { shouldRedirect &&
-            <Redirect to={`/songs/${shouldRedirect}`} /> }
+            <div className="newSongContainer">
+                <h1>Add Your Song to the Community!</h1>
+                <form onSubmit={signupSubmit}>
+                    <input name="title" type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
 
-        <h1>Submit a New Song to the Community!</h1>
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="new-title">Title:</label>
-                <input type="text" placeholder="title" name="title" value={song.title} onChange={handleChange}
-                />
+                    <label for="genre">Choose your Genre:</label>
+
+                    <select name="genre">
+                        <option value={genre} onChange={(e) => setGenre(e.target.value)}>Hip Hop</option>
+                        <option value={genre} onChange={(e) => setGenre(e.target.value)}>Rap</option>
+                        <option value={genre} onChange={(e) => setGenre(e.target.value)}>Pop</option>
+                        <option value={genre} onChange={(e) => setGenre(e.target.value)}>RnB</option>
+                        </select>
+                    <input name="userId" type="hidden" placeholder="UserId" value={userId} onChange={(e) => setUserId(e.target.value)} />
+                    <input type="submit" value="submit" />
+                </form>
             </div>
-
-            <div>
-                <label htmlFor="new-genre">Genre:</label>
-                <input type="text" placeholder="genre" name="genre" value={song.genre} onChange={handleChange}
-                />
-            </div>
-            <div>
-                <input type="submit" value="submit" />
-            </div>
-
-        </form> */}
-
         </div>
     )
 }
-
 
 export default New

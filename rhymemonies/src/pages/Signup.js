@@ -15,16 +15,20 @@ const Signup = () => {
     const signupSubmit = async (e) => {
         e.preventDefault()
 
-        console.log(env.API_URL)
-        console.log(user)
-
         let res = await axios.post(`${env.API_URL}/users/new`, {
             name: name,
             email: email,
             password: password
         })
         console.log(res)
+        console.log(res.headers)
+        console.log(res.headers.authorization)
+        localStorage.setItem('name', res.data.user.name)
         localStorage.setItem('userId', res.data.user.id)
+        localStorage.setItem('id', res.data.user.id)
+        localStorage.setItem('email', res.data.user.email)
+        localStorage.setItem('password', res.data.user.password)
+
         setUser(res.data.user)
     }
 
