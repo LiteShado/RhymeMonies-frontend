@@ -19,7 +19,7 @@ const Login = () => {
         })
         console.log(res)
         console.log(user)
-        localStorage.setItem('userId', res.data.encryptedId)
+        localStorage.setItem('userId', res.data.user.id)
         setUser(res.data.user)
     }
 

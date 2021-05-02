@@ -11,6 +11,7 @@ const Songs = () => {
 
     const[allSongs, setAllSongs] = useState(null)
 
+
     const getAllSongs = async() => {
             try {
             const res = await axios.get(`${env.API_URL}/songs`)
@@ -31,11 +32,12 @@ const Songs = () => {
         <h3>Title | Genre</h3>
         {allSongs && allSongs.map((res, i) => {
         return (
-            <li>
+            <li key={res.id}>
                 <Link to={`/songs/${res.id}`} className="communitySongs">
                 <SongChoice
                 key={res.id}
                 song={res}
+                userId={res.userId}
                 preview="true"
                 placeholder={res.title}
                 />

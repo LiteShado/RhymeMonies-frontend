@@ -24,7 +24,7 @@ const Signup = () => {
             password: password
         })
         console.log(res)
-        localStorage.setItem('userId', res.data.encryptedId)
+        localStorage.setItem('userId', res.data.user.id)
         setUser(res.data.user)
     }
 
