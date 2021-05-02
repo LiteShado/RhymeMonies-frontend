@@ -8,45 +8,48 @@ import { useParams, Redirect } from 'react-router-dom'
 
 const Profile = () => {
 
-    const[profile,setProfile] = useState({})
+//     const[profile,setProfile] = useState({})
 
-    const params = useParams()
-    const history = useHistory()
-    const [shouldRedirect, setShouldRedirect] =
-    useState(null)
+//     const params = useParams()
+//     const history = useHistory()
+//     const [shouldRedirect, setShouldRedirect] =
+//     useState(null)
 
-    const getProfile = () => {
+//     const getProfile = () => {
 
-        axios.get(`${env.API_URL}/users/profile`).then((response) => {
-           console.log(response)
-           setProfile(response.data)
-       })
-}
-    useEffect(getProfile, [])
+//         axios.get(`${env.API_URL}/users/profile`).then((response) => {
+//            console.log(response)
+//            setProfile(response.data)
+//        })
+// }
+//     useEffect(getProfile, [])
 
-    // const [profil, setLyric] = useState({
-    //     lyric: ''
-    // })
+//     // const [profil, setLyric] = useState({
+//     //     lyric: ''
+//     // })
 
-    const handleChange = (e) => {
-        const { name, value } = e.target
-        setProfile({
-            ...user,
-            [name]: value
-        })
-    }
+//     const handleChange = (e) => {
+//         const { name, value } = e.target
+//         setProfile({
+//             ...user,
+//             [name]: value
+//         })
+//     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.put(`${env.API_URL}/users/edit`, user).then((response) => {
-            console.log(response);
-        })
-        setShouldRedirect(response.data.id)
-        }
+//     const handleSubmit = (e) => {
+//         e.preventDefault()
+//         axios.put(`${env.API_URL}/users/edit`, user).then((response) => {
+//             console.log(response);
+//         })
+//         setShouldRedirect()
+//         }
+
 
 
     return (
         <div>
+            {/* { shouldRedirect &&
+            <Redirect to={`/users/profile`} /> }
             <h1>Your Profile</h1>
                     <ul key={user.id}>
                         <li to={`/users/profile`}>{user.name}</li>
@@ -66,7 +69,7 @@ const Profile = () => {
                             <input type="submit" value="submit" />
                         </div>
 
-                    </form>
+                    </form> */}
 
         </div>
         )

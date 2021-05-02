@@ -2,7 +2,7 @@ import {useState, useContext} from 'react'
 import {UserContext} from '../context/UserContext'
 import axios from 'axios'
 import '../css/Login.css'
-import {Redirect} from 'react-router-dom'
+import env from 'react-dotenv'
 
 const Signup = () => {
     const {userState} = useContext(UserContext)
@@ -15,9 +15,10 @@ const Signup = () => {
     const signupSubmit = async (e) => {
         e.preventDefault()
 
-        console.log(process.env.REACT_APP_BACKEND_URL)
-        
-        let res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/users/new`, {
+        console.log(env.API_URL)
+        console.log(user)
+
+        let res = await axios.post(`${env.API_URL}/users/new`, {
             name: name,
             email: email,
             password: password

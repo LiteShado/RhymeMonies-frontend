@@ -70,6 +70,14 @@ function App() {
         <Signup />
       }
       </Route>
+      <Route
+      exact path="/users">
+      { user.id ?
+        <Redirect to="/songs" />
+      :
+        <Login />
+      }
+      </Route>
 
       <Route exact path="/songs">
           {user.id &&

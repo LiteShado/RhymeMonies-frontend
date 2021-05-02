@@ -7,33 +7,27 @@ import {Link} from 'react-router-dom'
 
 const SongChoice = () => {
 
-    const[allSongs,setAllSongs] = useState({})
-    const params = useParams()
-    // const history = useHistory()
+    // const[allSongs,setAllSongs] = useState({})
+    // const params = useParams()
+    // // const history = useHistory()
 
 
-    const getAllSongs = () => {
+    // const getAllSongs = () => {
 
-             axios.get(`${env.API_URL}/${params.id}`).then((response) => {
-                console.log(response)
-                setAllSongs(response.data)
-            })
-    }
+    //          axios.get(`${env.API_URL}/${params.id}`).then((response) => {
+    //             console.log(response)
+    //             setAllSongs(response.data)
+    //         })
+    // }
 
-    useEffect(getAllSongs, [])
+    // useEffect(getAllSongs, [])
 
     return (
         <div>
-        <h1>Created by Members of the Community!</h1>
+        {/* <h1>Created by Members of the Community!</h1>
             <div>Title: {song.title}</div>
             <div>Genre: {song.genre}</div>
-            {/* <button onClick={() => {
-                    axios.get(`${env.API_URL}/songs/${params.id}/lyrics`)
-                }}>View Lyrics</button>
-            <button onClick={() => {
-                    axios.post(`${env.API_URL}/songs/${params.id}/lyrics`)
-                }}>Add Lyrics</button> */}
-            <Link to={`/songs/${params.id}/lyrics`}>View Lyrics</Link>
+            <Link to={`/songs/${params.id}/lyrics`}>View Lyrics</Link> */}
         </div>
     )
 }

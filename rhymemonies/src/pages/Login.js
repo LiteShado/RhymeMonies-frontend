@@ -2,6 +2,7 @@ import {useState, useContext} from 'react'
 import {UserContext} from '../context/UserContext'
 import axios from 'axios'
 import '../css/Login.css'
+import env from 'react-dotenv'
 
 const Login = () => {
     const {userState} = useContext(UserContext)
@@ -12,7 +13,7 @@ const Login = () => {
 
     const loginSubmit = async (e) => {
         e.preventDefault()
-        let res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users`, {
+        let res = await axios.post(`${env.API_URL}/users`, {
             email: email,
             password: password
         })

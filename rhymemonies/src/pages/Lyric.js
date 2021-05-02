@@ -8,57 +8,47 @@ import { useParams, Redirect } from 'react-router-dom'
 
 const Lyric = () => {
 
-    const[allLyric,setAllLyric] = useState({})
+//     const[allLyric,setAllLyric] = useState({})
 
-    const params = useParams()
-    const history = useHistory()
-    const [shouldRedirect, setShouldRedirect] =
-    useState(null)
+//     const params = useParams()
+//     const history = useHistory()
+//     const [shouldRedirect, setShouldRedirect] =
+//     useState(null)
 
-    const getAllLyric = () => {
+//     const getAllLyric = () => {
 
-        axios.get(`${env.API_URL}/songs/${params.id}/lyrics`).then((response) => {
-           console.log(response)
-           setAllLyric(response.data)
-       })
-}
-    useEffect(getAllLyric, [])
+//         axios.get(`${env.API_URL}/songs/${params.id}/lyrics`).then((response) => {
+//            console.log(response)
+//            setAllLyric(response.data)
+//        })
+// }
+//     useEffect(getAllLyric, [])
 
-    const [lyric, setLyric] = useState({
-        lyric: ''
-    })
+//     const [lyric, setLyric] = useState({
+//         lyric: ''
+//     })
 
-    const handleChange = (e) => {
-        const { name, value } = e.target
-        setLyric({
-            ...lyric,
-            [name]: value
-        })
-    }
+//     const handleChange = (e) => {
+//         const { name, value } = e.target
+//         setLyric({
+//             ...lyric,
+//             [name]: value
+//         })
+//     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post(`${env.API_URL}/songs/${params.id}/lyrics`, lyric).then((response) => {
-            console.log(response);
-        })
-        setShouldRedirect(response.data.id)
-        }
+//     const handleSubmit = (e) => {
+//         e.preventDefault()
+//         axios.post(`${env.API_URL}/songs/${params.id}/lyrics`, lyric).then((response) => {
+//             console.log(response);
+//         })
+//         setShouldRedirect(response.data.id)
+//         }
 
-
-    // .then(() ={
-    //     history.push('/songs/{params.id}')
-
-                //     {/* <button onClick={() => {
-                //     axios.get(`${env.API_URL}/songs/${params.id}`)
-                // }}>View Song</button>
-                // <button onClick={() => {
-                //     axios.get(`${env.API_URL}/songs/${params.id}/lyrics`)
-                // }}>Add Lyrics</button> */}
 
         return (
             <div>
             <h1>Here Are the Lyrics</h1>
-            <ul>
+            {/* <ul>
                 <div>
                     {allLyric.map((lyric) => {
                         return (
@@ -68,12 +58,6 @@ const Lyric = () => {
                             </li>
                                 <Link to={`/songs/${params.id}/lyrics`}>View Lyrics</Link>
 
-                            {/* <button onClick={() => {
-                                axios.get(`${env.API_URL}/songs/${params.id}`)
-                            }}>View Song</button>
-                            <button onClick={() => {
-                                axios.get(`${env.API_URL}/songs/${params.id}/lyrics`)
-                            }}>Add Lyrics</button> */}
                         </div>
                         )
                         })}
@@ -91,7 +75,7 @@ const Lyric = () => {
                                     </div>
 
                                 </form>
-                            </ul>
+                            </ul> */}
                             </div>
         )
 }
