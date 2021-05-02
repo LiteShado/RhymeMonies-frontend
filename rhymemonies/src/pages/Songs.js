@@ -1,51 +1,47 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios'
 // import Music from '../components/Music'
-import {Link} from 'react-router-dom'
 // import '../css/Music.css'
 import env from 'react-dotenv'
-import {useParams} from 'react-router-dom'
+import SongChoice from '../pages/SongChoice'
+import { Link } from 'react-router-dom'
 
 
 const Songs = () => {
 
-    const[allSongs,setAllSongs] = useState({})
-    const params = useParams()
+    const[allSongs, setAllSongs] = useState(null)
 
-
-    const getAllSongs = () => {
-
-             axios.get(`${env.API_URL}/songs`).then((response) => {
-                console.log(response)
-                setAllSongs(response.data)
-            })
+    const getAllSongs = async() => {
+            try {
+            const res = await axios.get(`${env.API_URL}/songs`)
+            setAllSongs(res.data)
+            console.log(res.data)
+            } catch (error) {
+                console.log(error)
+            }
     }
 
-    useEffect(getAllSongs, [])
+    useEffect(() => {
+        getAllSongs()
+    },[])
 
     return (
-        <div>
+        <>
         <h1>Check Out These from the Community!</h1>
-        <ul>
-        {allSongs.map((song) => {
-            return (
-                <div>
-                <li key={song.id}>
-                    <Link to={`/songs/${song.id}`}>{song.title}</Link>
+        <h3>Title | Genre</h3>
+        {allSongs && allSongs.map((res, i) =>
+        <Link to= "/songs" className="communitySongs">
+            <li>
+                <SongChoice
+                key={res.id}
+                song={res}
+                preview="true"
+                placeholder={res.title}
+                />{res.title} | {res.genre}
                 </li>
-                            <Link to={`/songs/${params.id}/lyrics`}>View Lyrics</Link>
-
-                {/* <button onClick={() => {
-                    axios.get(`${env.API_URL}/songs/${params.id}`)
-                }}>View Song</button>
-                <button onClick={() => {
-                    axios.get(`${env.API_URL}/songs/${params.id}/lyrics`)
-                }}>Add Lyrics</button> */}
-                </div>
-            )
-            })}
-        </ul>
-        </div>
+        </Link>
+            )}
+        </>
     )
 }
 export default Songs
