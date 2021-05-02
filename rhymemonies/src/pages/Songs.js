@@ -29,18 +29,21 @@ const Songs = () => {
         <>
         <h1>Check Out These from the Community!</h1>
         <h3>Title | Genre</h3>
-        {allSongs && allSongs.map((res, i) =>
-        <Link to= "/songs" className="communitySongs">
+        {allSongs && allSongs.map((res, i) => {
+        return (
             <li>
+                <Link to={`/songs/${res.id}`} className="communitySongs">
                 <SongChoice
                 key={res.id}
                 song={res}
                 preview="true"
                 placeholder={res.title}
-                />{res.title} | {res.genre}
-                </li>
-        </Link>
-            )}
+                />
+                {res.title} | {res.genre}</Link>
+            </li>
+
+            )})
+        }
         </>
     )
 }
