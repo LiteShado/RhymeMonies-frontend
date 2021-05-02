@@ -1,42 +1,62 @@
 import {useState} from 'react'
 import axios from 'axios'
+import { Redirect, useHistory } from 'react-router-dom'
+import env from "react-dotenv"
 
 const New = () => {
-    const [title, setTitle] = useState('')
-    const [genre, setGenre] = useState('')
+    const [shouldRedirect, setShouldRedirect] =
+    useState(null)
 
-    const addSong = async (e) => {
+    const [song, setSong] = useState({
+        title: '',
+        genre: '',
+        userId: ''
+    })
+
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setSong({
+            ...song,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = (e) => {
         e.preventDefault()
-        try {
-            let auth = localStorage.getItem('userId')
-            let res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/songs`,
-
-            {
-                title: title,
-                genre: genre
-            },
-            {
-                headers: {
-                    authorization:auth
-                }
-            })
-
-            console.log(res)
-        } catch (error) {
-           console.log(error)
+        axios.post(`${env.API_URL}/songs/new`, song).then((response) => {
+            console.log(response);
+        })
+        setShouldRedirect(response.data.id)
         }
     }
 
     return (
-        <>
+        <div>
+            { shouldRedirect &&
+            <Redirect to={`/songs/${shouldRedirect}`} /> }
+
         <h1>Submit a New Song to the Community!</h1>
-        <form onSubmit={addSong}>
-            <input type="text" placeholder="title" value={title} onChange={(e) => setTitle(e.target.value)} />
-            <input type="text" placeholder="genre" value={genre} onChange={(e) => setGenre(e.target.value)} />
-            <input type="submit" value="submit" />
+        <form onSubmit={handleSubmit}>
+            <div>
+                <label htmlFor="new-title">Title:</label>
+                <input type="text" placeholder="title" name="title" value={song.title} onChange={handleChange}
+                />
+            </div>
+
+            <div>
+                <label htmlFor="new-genre">Genre:</label>
+                <input type="text" placeholder="genre" name="genre" value={song.genre} onChange={handleChange}
+                />
+            </div>
+            <div>
+                <input type="submit" value="submit" />
+            </div>
+
         </form>
-        </>
+
+        </div>
     )
 }
+
 
 export default New

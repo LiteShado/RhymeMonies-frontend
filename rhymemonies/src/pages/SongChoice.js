@@ -3,7 +3,7 @@ import axios from 'axios'
 =import env from 'react-dotenv'
 import {useParams, useHistory} from 'react-router-dom'
 
-const MySongs = () => {
+const SongChoice = () => {
 
     const[allSongs,setAllSongs] = useState({})
     const params = useParams()
@@ -22,17 +22,16 @@ const MySongs = () => {
 
     return (
         <div>
-        <h1>Your MasterPiece List</h1>
+        <h1>Created by Members of the Community!</h1>
             <div>Title: {song.title}</div>
             <div>Genre: {song.genre}</div>
-            <div>Lyrics: {song.lyric}</div>
             <button onClick={() => {
-                    axios.delete(`${env.API_URL}/songs/${params.id}`).then(() => {
-                            history.push('/songs')
-                        })
-                }}
-                >Delete Song</button>
+                    axios.get(`${env.API_URL}/songs/${params.id}/lyrics`)
+                }}>View Lyrics</button>
+            <button onClick={() => {
+                    axios.post(`${env.API_URL}/songs/${params.id}/lyrics`)
+                }}>Add Lyrics</button>
         </div>
     )
 }
-export default MySongs
+export default SongChoice

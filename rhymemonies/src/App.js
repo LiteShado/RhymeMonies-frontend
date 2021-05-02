@@ -6,9 +6,13 @@ import Navbar from './components/Navbar'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import New from './pages/New'
-import Songs from './pages/Song'
+import Songs from './pages/Songs'
 import MySongs from './pages/MySongs'
+import Profile from './pages/Profile'
+import SongChoice from './pages/SongChoice'
+import Home from './pages/Home'
 import {Route, Redirect, Switch} from 'react-router-dom'
+import env from 'react-dotenv'
 
 function App() {
 
@@ -40,6 +44,7 @@ function App() {
   console.log(user)
 
   return (
+
     <div>
       <Navbar />
       <Route
@@ -49,14 +54,15 @@ function App() {
           return <Redirect to="/users" />
         }}
       />
-      <Route exact path="/users">
+      <Route exact path="/">
         { user.id ?
-          <Redirect to="/songs" />
+        <Redirect to="/songs" />
         :
-         <Login />
+         <Home />
         }
       </Route>
-      <Route exact path="/users/new">
+      <Route
+      exact path="/users/new">
       { user.id ?
         <Redirect to="/songs" />
       :
@@ -64,7 +70,7 @@ function App() {
       }
       </Route>
 
-        <Route exact path="/songs">
+      <Route exact path="/songs">
           {user.id &&
           <Songs />
           }
@@ -73,13 +79,24 @@ function App() {
           {user.id &&
           <New />
           }
-        </Route>
+      </Route>
 
-      <Route exact path="/songs/:id">
+      <Route exact path="/users/songs">
           {user.id &&
           <MySongs />
           }
         </Route>
+      <Route exact path="/users/profile">
+          {user.id &&
+          <Profile />
+          }
+      </Route>
+      <Route exact path="/songs/:id">
+          {user.id &&
+          <SongChoice />
+          }
+      </Route>
+
     </div>
   )
 }
