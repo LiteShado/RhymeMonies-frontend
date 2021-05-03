@@ -1,27 +1,35 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios'
 import env from 'react-dotenv'
-import {useParams, useHistory} from 'react-router-dom'
-import {Link} from 'react-router-dom'
-
+// import {useParams} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 
 const SongChoice = (props) => {
     const [song, setSong] = useState({})
+    // const params = useParams()
 
-    const fetchSong = () => {
-        axios.get(`${env.API_URL}/songs/${props.id}`).then((response) => {
-            setSong(response.data)
-        })
-    }
+    console.log(props)
 
-    useEffect(fetchSong, [])
+    const fetchSong = async() => {
+        const response = await axios.get(`${env.API_URL}/songs/${props.song.id}`)
+        console.log(props.song.id)
+        // console.log(props.song.id)
+        // console.log(params.id)
+        console.log(response)
+        setSong(response.data.song)
+        console.log(response.data.song)
+        }
+
+    useEffect(() => {
+        fetchSong()
+    }, [])
 
     return (
         <div>
-        {/* <h1>Created by Members of the Community!</h1>
+        {/* <h1>Created by Members of the Community!</h1> */}
             <div>Title: {song.title}</div>
             <div>Genre: {song.genre}</div>
-            <Link to={`/songs/${params.id}/lyrics`}>View Lyrics</Link> */}
+            {/* <Link to={`/songs/${props.id}/lyrics`}>View Lyrics</Link> */}
         </div>
     )
 }

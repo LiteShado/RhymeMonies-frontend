@@ -4,7 +4,7 @@ import axios from 'axios'
 // import '../css/Music.css'
 import env from 'react-dotenv'
 import SongChoice from '../pages/SongChoice'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 
 const Songs = () => {
@@ -17,6 +17,7 @@ const Songs = () => {
             const res = await axios.get(`${env.API_URL}/songs`)
             setAllSongs(res.data)
             console.log(res.data)
+
             } catch (error) {
                 console.log(error)
             }
@@ -29,7 +30,7 @@ const Songs = () => {
     return (
         <>
         <h1>Check Out These from the Community!</h1>
-        <h3>Title | Genre</h3>
+        {/* <h3>Title | Genre</h3> */}
         {allSongs && allSongs.map((res, i) => {
         return (
             <li key={res.id}>
@@ -37,9 +38,9 @@ const Songs = () => {
                 <SongChoice
                 key={res.id}
                 song={res}
-                userId={res.userId}
-                preview="true"
-                placeholder={res.title}
+                // userId={res.userId}
+                // preview="true"
+                // placeholder={res.title}
                 />
                 {res.title} | {res.genre}</Link>
             </li>

@@ -95,11 +95,17 @@ function App() {
           <Profile />
           }
       </Route>
-      <Route exact path="/songs/:id">
-          {user.id &&
-          <SongChoice />
-          }
-      </Route>
+
+      <Route
+      path="/songs/:id"
+      render={(routeInfo) => {
+        // console.log(routeInfo);
+        return <SongChoice
+        // id={routeInfo.match.params.id}
+        />
+      }}
+      />
+      
       <Route exact path="/songs/:id/lyrics">
           {user.id &&
           <Lyric />
