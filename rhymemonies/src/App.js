@@ -49,23 +49,18 @@ function App() {
 
     <div>
       <Navbar />
+
       <Route
         path="/"
         exact>
-        { user.id ?
+        {/* { user.id ?
         <Redirect to="/songs" />
-        :
+        : */}
         <Home />
-        }
+        {/* } */}
       </Route>
-      <Route
-      exact path="/users/new">
-      { user.id ?
-        <Redirect to="/songs" />
-      :
-        <Signup />
-      }
-      </Route>
+
+
       <Route
       exact path="/users">
       { user.id ?
@@ -75,27 +70,38 @@ function App() {
       }
       </Route>
 
-      <Route exact path="/songs">
-          { user.id &&
-          <Songs />
-          }
-        </Route>
-        <Route exact path="/songs/new">
-          { user.id &&
-          <New />
-          }
-      </Route>
-
-      <Route exact path="/users/songs">
-          { user.id &&
-          <MySongs />
-          }
-        </Route>
       <Route exact path="/users/profile">
           { user.id &&
           <Profile />
           }
       </Route>
+      <Route
+      exact path="/users/new">
+      { user.id ?
+        <Redirect to="/songs" />
+      :
+        <Signup />
+      }
+      </Route>
+
+      <Route exact path="/songs">
+          {/* { user.id && */}
+          <Songs />
+          {/* } */}
+      </Route>
+
+      <Route exact path="/songs/new">
+          {/* { user.id && */}
+          <New />
+          {/* } */}
+      </Route>
+
+      <Route exact path="/users/songs">
+          {/* { user.id && */}
+          <MySongs />
+          {/* } */}
+      </Route>
+
 
       <Route
       path="/songs/:id"
@@ -108,9 +114,9 @@ function App() {
       />
 
       <Route exact path="/songs/:id/lyrics">
-          {user.id &&
+        {/* {user.id && */}
           <Lyric />
-          }
+          {/* } */}
       </Route>
 
     </div>

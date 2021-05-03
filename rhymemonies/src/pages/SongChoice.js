@@ -7,7 +7,7 @@ import { localStorage } from 'use-local-storage'
 
 const SongChoice = (props) => {
     const [song, setSong] = useState({})
-    const params = useParams()
+    // const params = useParams()
     console.log(props)
 
 

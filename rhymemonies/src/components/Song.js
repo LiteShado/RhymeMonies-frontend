@@ -1,26 +1,26 @@
-
 import {Link} from 'react-router-dom'
+// import {useState} from 'react'
 
-const Songs = (props) => {
+
+const Song = (props) => {
     return (
-        <div>
-
+        <div className="songPreview">
+            {/* check whether this is a question in the homepage or the single post page to conditionally render just the title or the whole thing */}
             {props.preview && (
                 <Link to ={`/songs/${props.song.id}`}>
                 <h1>{props.song.title}</h1>
                 </Link>
             )}
 
-            {props.full && props.song &&
-            <div>
-                <div>
+
+        {/* single post page to conditionally render the full question */}
+            {props.full && props.question &&
+            <div className="fullSong">
+                <div className="fullSongTitle">
                     <h1>{props.song.title}</h1>
                 </div>
-                <div>
-                    <p>{props.song.genre}</p>
-                </div>
-                <div>
-                    <p>By: {props.song.user.name}</p>
+                <div className="fulLSongGenre">
+                    <p>{props.genre.genre}</p>
                 </div>
             </div>
             }
@@ -29,4 +29,4 @@ const Songs = (props) => {
     )
 }
 
-export default Songs
+export default Song
