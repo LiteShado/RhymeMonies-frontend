@@ -21,7 +21,7 @@ const New = () => {
         let res = await axios.post(`${env.API_URL}/songs/new`, {
             title: title,
             genre: genre,
-            userId: id
+            id: id
         })
         console.log(res)
         localStorage.setItem('title', res.data.song.title)

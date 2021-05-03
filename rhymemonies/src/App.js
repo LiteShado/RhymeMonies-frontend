@@ -31,6 +31,7 @@ function App() {
 
     if(user.data.user) {
       setUser(user.data)
+      console.log(user.data)
     }
     } catch (error) {
       console.log(error)
@@ -75,23 +76,23 @@ function App() {
       </Route>
 
       <Route exact path="/songs">
-          {user.id &&
+          { user.id &&
           <Songs />
           }
         </Route>
         <Route exact path="/songs/new">
-          {user.id &&
+          { user.id &&
           <New />
           }
       </Route>
 
       <Route exact path="/users/songs">
-          {user.id &&
+          { user.id &&
           <MySongs />
           }
         </Route>
       <Route exact path="/users/profile">
-          {user.id &&
+          { user.id &&
           <Profile />
           }
       </Route>
@@ -105,7 +106,7 @@ function App() {
         />
       }}
       />
-      
+
       <Route exact path="/songs/:id/lyrics">
           {user.id &&
           <Lyric />

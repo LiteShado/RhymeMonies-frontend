@@ -1,14 +1,16 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios'
 import env from 'react-dotenv'
-// import {useParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 // import {Link} from 'react-router-dom'
+import { localStorage } from 'use-local-storage'
 
 const SongChoice = (props) => {
     const [song, setSong] = useState({})
-    // const params = useParams()
-
+    const params = useParams()
     console.log(props)
+
+
 
     const fetchSong = async() => {
         const response = await axios.get(`${env.API_URL}/songs/${props.song.id}`)
@@ -20,13 +22,18 @@ const SongChoice = (props) => {
         console.log(response.data.song)
         }
 
-    useEffect(() => {
-        fetchSong()
-    }, [])
+        // localStorage.setItem('title', response.data.song.title);        localStorage.setItem('genre', response.data.song.genre);
+
+        useEffect(() => {
+            fetchSong()
+        }, [])
+
+        console.log(song)
 
     return (
         <div>
         {/* <h1>Created by Members of the Community!</h1> */}
+
             <div>Title: {song.title}</div>
             <div>Genre: {song.genre}</div>
             {/* <Link to={`/songs/${props.id}/lyrics`}>View Lyrics</Link> */}
