@@ -4,18 +4,21 @@ import axios from 'axios'
 // import Music from '../components/Music'
 // import '../css/Music.css'
 import env from 'react-dotenv'
-import { useParams, Redirect, Link } from 'react-router-dom'
+
 
 const Lyric = (props) => {
 
     const {userState} = useContext(UserContext)
     const [song,setSong] = userState
 
-    const [lyric,setLyric] = useState('')
+
+    const [lyric,setLyric] = useState(null)
     const [userId,setUserId] = useState('')
     const [songId,setSongId] = useState('')
     console.log(props.match.params.id)
     console.log(props)
+
+    const [lyrics, setLyrics] = useState('')
 
     const get = async() => {
         try {
@@ -27,6 +30,8 @@ const Lyric = (props) => {
         const array = lyric.data.lyrics
         for (i =0; i<array.length; i++) {
             console.log(array[i].lyric)
+            setLyric(array[i].lyric)
+            console.log(lyric)
         }
 
         console.log(array)
@@ -36,7 +41,9 @@ const Lyric = (props) => {
             console.log(error)
         }
     }
-    get()
+    useEffect(() => {
+        get()
+    }, [])
 
 
     const signupSubmit = async (e) => {
@@ -62,8 +69,22 @@ const Lyric = (props) => {
     }
 
     return (
-        <div>
-            <div className="newLyricContainer">
+        <>
+                <h1>Check Out These Lyrics!!</h1>
+            <>
+
+                {lyric && lyric.map((res, i) => {
+                    console.log(lyrics)
+
+                return (
+                    <li key={res.id}>Lyrics:
+                        {res.lyric}
+                    </li>
+                )
+                })}
+            </>
+
+
                 <h1>Add Your Lyrics To The Song!</h1>
                 <form onSubmit={signupSubmit}>
                     <textarea name="lyric" type="text" placeholder="Lyrics" value={lyric} onChange={(e) => setLyric(e.target.value)} />
@@ -74,8 +95,8 @@ const Lyric = (props) => {
 
                     <input type="submit" value="submit" />
                 </form>
-            </div>
-        </div>
+
+        </>
     )
 
 
