@@ -1,27 +1,40 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useContext} from 'react'
 import axios from 'axios'
 // import Music from '../components/Music'
 // import '../css/Music.css'
 import env from 'react-dotenv'
 import SongChoice from '../pages/SongChoice'
 import { Link } from 'react-router-dom'
+import {UserContext} from '../context/UserContext'
 
 
-const MySongs = () => {
+
+const MySongs = (props) => {
 
     // const[allSongs, setAllSongs] = useState(null)
     // const userId = localStorage.getItem('userId', userId)
-
+    const {userState} = useContext(UserContext)
     const[allSongs, setAllSongs] = useState(null)
 
     // const id = localStorage.getItem('userId', userId)
 
     const getAllSongs = async() => {
         try {
-            const res = await axios.get(`${env.API_URL}/users/songs`)
+            const res = await axios.get(`${env.API_URL}/songs/user`)
             console.log(res)
-            setAllSongs(res.data)
-            console.log(res.data)
+
+            let i
+
+            const array = res.data
+
+            setAllSongs(array)
+            console.log(array)
+
+            for (i = 0; i<array.length; i++) {
+                console.log(array[i].res)
+                // setLyric(array[i].lyric)
+                console.log(res)
+            }
 
             } catch (error) {
             console.log(error)

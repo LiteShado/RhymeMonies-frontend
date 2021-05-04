@@ -22,7 +22,7 @@ function App() {
 
   const userInfo = async () => {
     const userId = localStorage.getItem('userId')
-    
+
 
     try {
       let user = await axios.get('http://localhost:3001/users/profile' ,{
@@ -64,9 +64,13 @@ function App() {
 
       <Route
         path="/"
-        exact
-        component={Home}
-      />
+        exact>
+        { user.id ?
+        <Redirect to="/songs" />
+      :
+      <Home />
+        }
+      </Route>
 
       <Route
         path="/users"
@@ -86,25 +90,37 @@ function App() {
         component={Signup}
       />
       <Route
-        path="/users/songs"
+        path="/songs/user"
         exact
         component={MySongs}
       />
       <Route
         path="/users/profile"
-        exact
-        component={Profile}
-      />
+        exact>
+          { user.id ?
+          <Profile />
+          :
+          <Redirect to="/users" />
+          }
+      </Route>
       <Route
         path="/songs"
-        exact
-        component={Songs}
-      />
+        exact>
+          { user.id ?
+        <Songs />
+        :
+        <Redirect to="/users" />
+        }
+      </Route>
       <Route
         path="/songs/new"
-        exact
-        component={New}
-      />
+        exact>
+          { user.id ?
+        <New />
+        :
+        <Redirect to="/users" />
+        }
+      </Route>
       <Route
         path="/lyrics/:id"
         exact

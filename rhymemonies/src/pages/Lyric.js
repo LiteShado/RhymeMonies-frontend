@@ -17,7 +17,7 @@ const Lyric = (props) => {
     const [lyric,setLyric] = useState(null)
     const [userId,setUserId] = useState('')
     const [songId,setSongId] = useState('')
-    console.log(props.match.params.id)
+    // console.log(props.match.params.id)
     console.log(props)
 
     const [lyrics, setLyrics] = useState('')

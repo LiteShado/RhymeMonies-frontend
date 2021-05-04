@@ -7,11 +7,11 @@ import '../css/Navbar.css'
 
 const Navbar = (props) => {
     const {userState} = useContext(UserContext)
-    const[userId,setUserId] = userState
+    const[user,setUser] = userState
 
     const logout = () => {
         localStorage.clear()
-        setUserId(null)
+        setUser(null)
         window.location.reload();
     }
 
@@ -20,7 +20,7 @@ const Navbar = (props) => {
     return (
         <ul>
             {/* <li ><Link className="navLink" to="/">Home</Link></li> */}
-            {userId ?
+            {user.id ?
             <>
             <li ><Link className="navLink" to="/songs">Songs</Link></li>
             <li ><Link className="navLink" to="/songs/new">Add Song To Community</Link></li>
