@@ -35,7 +35,7 @@ const SongChoice = (props) => {
 
             <div>Title: {song.title}</div>
             <div>Genre: {song.genre}</div>
-            <Link to={`/songs/${props.song.id}/lyrics`}>View Lyrics</Link>
+            <Link to={`/lyrics/${props.song.id}`}>View Lyrics</Link>
         </div>
     )
 }

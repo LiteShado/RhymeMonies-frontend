@@ -10,80 +10,56 @@ import { Link } from 'react-router-dom'
 const MySongs = () => {
 
     // const[allSongs, setAllSongs] = useState(null)
+    // const userId = localStorage.getItem('userId', userId)
 
-    const[allUserSongs, setAllUserSongs] = useState(null)
-    const userId = localStorage.getItem('userId')
+    const[allSongs, setAllSongs] = useState(null)
 
+    // const id = localStorage.getItem('userId', userId)
 
     const getAllSongs = async() => {
-            try {
-            const res = await axios.get(`${env.API_URL}/songs`)
+        try {
+            const res = await axios.get(`${env.API_URL}/users/songs`)
             console.log(res)
-            // setAllSongs(res.data)
-            setAllUserSongs(() =>
-            res.data)
+            setAllSongs(res.data)
             console.log(res.data)
-            console.log(userId)
+
             } catch (error) {
             console.log(error)
-
             }
-
-
     }
 
-    // useEffect(() => {
-    //     getAllSongs()
-    // },[])
+    useEffect(() => {
+        getAllSongs()
+    },[])
 
-    // const filter = () => {
-    //     let filtered = allUserSongs.filter(() => {
-    //         return allUserSongs.includes(userId)
-    //     })
-    // }
-
-    // useEffect(() => {
-    //     filter(filtered)
-    // }, [filtered]
-    // )
     return (
         <>
         <h1>Here Are Your Songs!!</h1>
-        <h3>Title | Genre</h3>
 
-        {allUserSongs && allUserSongs.map((res, i) => {
-            console.log(allUserSongs[i].userId)
-            console.log(userId)
-            if (allUserSongs[i].userId !==userId) {
-                return null;
-            }
-
-
-        // {allUserSongs.filter(allUserSongs[i] => allUserSongs[i].userId===userId) && allUserSongs.map((res, i) => {
-        // console.log(allUserSongs[i].userId)
-        // console.log(allUserSongs)
-        // console.log([i])
+        {allSongs && allSongs.map((res, i) => {
+            console.log(res)
         return (
-            <li key={allUserSongs.id}>
-                <Link to={`/songs/${allUserSongs.id}`} className="userSongs">
+            <li key={res.id}>
+                <Link to={`/songs/${res.id}`}
+                className="userSongs">
                 <SongChoice
-                key={allUserSongs.id}
-                song={allUserSongs.title}
-                userId={allUserSongs.userId}
-                preview="true"
-                placeholder={allUserSongs.title}
+                key={res.id}
+                song={res.title}
+                // userId={allUserSongs.userId}
+                // preview="true"
+                // placeholder={allUserSongs.title}
                 />
-                {allUserSongs.title} | {allUserSongs.genre}</Link>
+                {allSongs.title} | {allSongs.genre}</Link>
 
             </li>
 
-            )
+            )})
         }
-        )
-
-    }
         </>
     )
+
 }
+
+
 
 export default MySongs

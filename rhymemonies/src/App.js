@@ -106,7 +106,7 @@ function App() {
         component={New}
       />
       <Route
-        path="/songs/:id/lyrics"
+        path="/lyrics/:id"
         exact
         component={Lyric}
       />

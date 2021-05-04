@@ -2,10 +2,9 @@ import {useEffect, useState, useContext} from 'react'
 import {UserContext} from '../context/UserContext'
 import axios from 'axios'
 // import Music from '../components/Music'
-import {Link} from 'react-router-dom'
 // import '../css/Music.css'
 import env from 'react-dotenv'
-import { useParams, Redirect } from 'react-router-dom'
+import { useParams, Redirect, Link } from 'react-router-dom'
 
 const Lyric = (props) => {
 
@@ -15,7 +14,30 @@ const Lyric = (props) => {
     const [lyric,setLyric] = useState('')
     const [userId,setUserId] = useState('')
     const [songId,setSongId] = useState('')
+    console.log(props.match.params.id)
     console.log(props)
+
+    const get = async() => {
+        try {
+
+        const lyric = await axios.get(`${env.API_URL}/lyrics/${props.match.params.id}`)
+
+        let i
+
+        const array = lyric.data.lyrics
+        for (i =0; i<array.length; i++) {
+            console.log(array[i].lyric)
+        }
+
+        console.log(array)
+
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    get()
+
 
     const signupSubmit = async (e) => {
         e.preventDefault()
@@ -25,13 +47,16 @@ const Lyric = (props) => {
         console.log(id)
         console.log(idd)
 
-        let res = await axios.post(`${env.API_URL}/songs/${props.match.params.id}/lyrics`, {
+
+        console.log(get)
+
+        let res = await axios.post(`${env.API_URL}/lyrics/${props.match.params.id}`, {
             lyric: lyric,
             userId: id,
             songId: idd
         })
         console.log(res)
-        localStorage.setItem('lyric', res.data.song.lyric)
+        // localStorage.setItem('lyric', res.data.song.lyric)
 
         setSong(res.data.song)
     }
