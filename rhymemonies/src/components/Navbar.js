@@ -2,18 +2,24 @@ import {useState, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {UserContext} from '../context/UserContext'
 import '../css/Navbar.css'
-const Navbar = () => {
+
+
+
+const Navbar = (props) => {
     const {userState} = useContext(UserContext)
     const[user,setUser] = userState
 
     const logout = () => {
         localStorage.clear()
         setUser(null)
+        window.location.reload();
     }
+
+    console.log(props)
 
     return (
         <ul>
-            <li ><Link className="navLink" to="/">Home</Link></li>
+            {/* <li ><Link className="navLink" to="/">Home</Link></li> */}
             {user.id ?
             <>
             <li ><Link className="navLink" to="/songs">Songs</Link></li>
@@ -24,8 +30,10 @@ const Navbar = () => {
             </>
             :
             <>
+            <li ><Link className="navLink" to="/">Home</Link></li>
             <li ><Link className="navLink" to="/users">Login</Link></li>
             <li ><Link className="navLink" to="/users/new">Signup</Link></li>
+
             </> }
         </ul>
     )

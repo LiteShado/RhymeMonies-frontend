@@ -22,8 +22,9 @@ function App() {
 
   const userInfo = async () => {
     const userId = localStorage.getItem('userId')
+
     try {
-      let user = await axios.get('http://localhost:3001/users' ,{
+      let user = await axios.get('http://localhost:3001/users/profile' ,{
       headers:{
         authorization: userId
       }
@@ -44,24 +45,81 @@ function App() {
   }, [])
 
   console.log(user)
+  console.log(user.id)
 
   return (
 
     <div>
       <Navbar />
 
-      <Route
+      {/* <Route
         path="/"
         exact>
-        {/* { user.id ?
+      { user.id ?
         <Redirect to="/songs" />
-        : */}
+        :
         <Home />
-        {/* } */}
-      </Route>
-
+        }
+      </Route> */}
 
       <Route
+        path="/"
+        exact
+        component={Home}
+      />
+
+      <Route
+        path="/users"
+        exact>
+
+        // component={Login}
+        { user.id ?
+        <Redirect to="/songs" />
+        :
+        <Login />
+        }
+      </Route>
+
+      <Route
+        path="/users/new"
+        exact
+        component={Signup}
+      />
+      <Route
+        path="/users/songs"
+        exact
+        component={MySongs}
+      />
+      <Route
+        path="/users/profile"
+        exact
+        component={Profile}
+      />
+      <Route
+        path="/songs"
+        exact
+        component={Songs}
+      />
+      <Route
+        path="/songs/new"
+        exact
+        component={New}
+      />
+      <Route
+        path="/songs/:id/lyrics"
+        exact
+        component={Lyric}
+      />
+      <Route
+        path="/songs/:id"
+        exact
+        render={(routeInfo) => {
+        }}
+        component={SongChoice}
+        />
+
+
+      {/* <Route
       exact path="/users">
       { user.id ?
         <Redirect to="/songs" />
@@ -70,11 +128,6 @@ function App() {
       }
       </Route>
 
-      <Route exact path="/users/profile">
-          { user.id &&
-          <Profile />
-          }
-      </Route>
       <Route
       exact path="/users/new">
       { user.id ?
@@ -82,28 +135,32 @@ function App() {
       :
         <Signup />
       }
-      </Route>
+      </Route> */}
 
-      <Route exact path="/songs">
-          {/* { user.id && */}
-          <Songs />
-          {/* } */}
-      </Route>
-
-      <Route exact path="/songs/new">
-          {/* { user.id && */}
-          <New />
-          {/* } */}
-      </Route>
-
-      <Route exact path="/users/songs">
-          {/* { user.id && */}
+      {/* <Route exact path="/users/songs">
+        {user.id &&
           <MySongs />
-          {/* } */}
-      </Route>
+        }
+      </Route> */}
+      {/* <Route exact path="/users/profile">
+      { user.id &&
+          <Profile />
+      }
+      </Route> */}
 
+      {/* <Route exact path="/songs">
+          { user.id &&
+          <Songs />
+        }
+      </Route> */}
 
-      <Route
+      {/* <Route exact path="/songs/new">
+        { user.id &&
+          <New />
+        }
+      </Route> */}
+
+      {/* <Route
       path="/songs/:id"
       render={(routeInfo) => {
         // console.log(routeInfo);
@@ -111,13 +168,13 @@ function App() {
         // id={routeInfo.match.params.id}
         />
       }}
-      />
+      /> */}
 
-      <Route exact path="/songs/:id/lyrics">
-        {/* {user.id && */}
+      {/* <Route exact path="/songs/:id/lyrics">
+      {user.id &&
           <Lyric />
-          {/* } */}
-      </Route>
+        }
+      </Route> */}
 
     </div>
   )
