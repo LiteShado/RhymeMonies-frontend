@@ -30,12 +30,12 @@ const Songs = () => {
     return (
         <>
         <h1>Check Out These from the Community!</h1>
-        {/* <h3>Title | Genre</h3> */}
+        <h3>Title | Genre</h3>
         {allSongs && allSongs.map((res, i) => {
             console.log(res)
         return (
             <li key={res.id}>
-                <Link to={`/songs/${res.id}`} className="communitySongs">
+                <div to={`/songs/${res.id}`} className="communitySongs">
                 <SongChoice
                 key={res.id}
                 song={res}
@@ -45,7 +45,7 @@ const Songs = () => {
                 // placeholder={res.title}
                 />
                 {res.title} | {res.genre}
-                </Link>
+                </div>
             </li>
 
             )})

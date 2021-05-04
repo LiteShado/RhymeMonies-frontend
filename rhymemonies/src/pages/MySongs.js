@@ -3,20 +3,17 @@ import axios from 'axios'
 // import Music from '../components/Music'
 // import '../css/Music.css'
 import env from 'react-dotenv'
-import SongChoice from '../pages/SongChoice'
+// import SongChoice from '../pages/SongChoice'
 import { Link } from 'react-router-dom'
 import {UserContext} from '../context/UserContext'
 
-
-
 const MySongs = (props) => {
 
-    // const[allSongs, setAllSongs] = useState(null)
-    // const userId = localStorage.getItem('userId', userId)
+    console.log(props)
+
     const {userState} = useContext(UserContext)
     const[allSongs, setAllSongs] = useState(null)
 
-    // const id = localStorage.getItem('userId', userId)
 
     const getAllSongs = async() => {
         try {
@@ -46,7 +43,7 @@ const MySongs = (props) => {
     },[])
 
     return (
-        <>
+        <div className="mySongs">
         <h1>Here Are Your Songs!!</h1>
 
         {allSongs && allSongs.map((res, i) => {
@@ -55,20 +52,21 @@ const MySongs = (props) => {
             <li key={res.id}>
                 <Link to={`/songs/${res.id}`}
                 className="userSongs">
-                <SongChoice
+                {/* <SongChoice
                 key={res.id}
                 song={res.title}
                 // userId={allUserSongs.userId}
                 // preview="true"
                 // placeholder={allUserSongs.title}
                 />
-                {allSongs.title} | {allSongs.genre}</Link>
-
+                {allSongs.title} | {allSongs.genre}</Link> */}
+            </Link>
             </li>
+        )
 
-            )})
-        }
-        </>
+        })}
+
+        </div>
     )
 
 }

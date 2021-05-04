@@ -7,7 +7,7 @@ import '../css/Navbar.css'
 
 const Navbar = (props) => {
     const {userState} = useContext(UserContext)
-    const[user,setUser] = userState
+    const[user, setUser] = userState
 
     const logout = () => {
         localStorage.clear()
@@ -24,7 +24,7 @@ const Navbar = (props) => {
             <>
             <li ><Link className="navLink" to="/songs">Songs</Link></li>
             <li ><Link className="navLink" to="/songs/new">Add Song To Community</Link></li>
-            <li ><Link className="navLink" to="/users/songs">My Songs</Link></li>
+            <li ><Link className="navLink" to="/songs/user">My Songs</Link></li>
             <li ><Link className="navLink" to="/users/edit">My Profile</Link></li>
             <li  onClick={() => logout()}><Link className="navLink" to="/">Logout</Link></li>
             </>

@@ -40,11 +40,11 @@ const New = () => {
 
                     <label for="genre">Choose your Genre:</label>
 
-                    <select name="genre">
-                        <option value={genre} onChange={(e) => setGenre(e.target.value)}>Hip Hop</option>
-                        <option value={genre} onChange={(e) => setGenre(e.target.value)}>Rap</option>
-                        <option value={genre} onChange={(e) => setGenre(e.target.value)}>Pop</option>
-                        <option value={genre} onChange={(e) => setGenre(e.target.value)}>RnB</option>
+                    <select name="genre" value={genre}>
+                        <option value="Hip Hop" onChange={(e) => setGenre(e.target.value)}>Hip Hop</option>
+                        <option value="Rap"onChange={(e) => setGenre(e.target.value)}>Rap</option>
+                        <option value="Pop"onChange={(e) => setGenre(e.target.value)}>Pop</option>
+                        <option value="RnB" onChange={(e) => setGenre(e.target.value)}>RnB</option>
                         </select>
                     <input name="userId" type="hidden" placeholder="UserId" value={userId} onChange={(e) => setUserId(e.target.value)} />
                     <input type="submit" value="submit" />

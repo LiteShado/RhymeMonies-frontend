@@ -11,6 +11,20 @@ body {
 .lyricList {
   list-style-type: none;
 }
+
+.viewLyrics {
+  font-size: 15px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: 3px solid black;
+
+}
+
+.mySongs {
+  color: 3px solid black;
+  border: 4px solid blue;
+}
+
+
 * {
 
   box-sizing: border-box;
@@ -41,4 +55,6 @@ li {
   list-style-position: outside;
   padding: 6px;
   margin: 4px;
+  size: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

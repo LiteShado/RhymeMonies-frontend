@@ -8,9 +8,8 @@ import { localStorage } from 'use-local-storage'
 const SongChoice = (props) => {
     const [song, setSong] = useState({})
     // const params = useParams()
-    console.log(props.song.id)
-
-
+    // console.log(props.song.id)
+    console.log(props)
 
     const fetchSong = async() => {
         const response = await axios.get(`${env.API_URL}/songs/${props.song.id}`)
@@ -28,14 +27,15 @@ const SongChoice = (props) => {
         }, [])
 
         console.log(song)
+        // console.log(props)
 
     return (
         <div>
         {/* <h1>Created by Members of the Community!</h1> */}
 
-            <div>Title: {song.title}</div>
-            <div>Genre: {song.genre}</div>
-            <Link to={`/lyrics/${props.song.id}`}>View Lyrics</Link>
+            {/* <div>Title: {song.title}</div>
+            <div>Genre: {song.genre}</div> */}
+            <Link to={`/lyrics/${props.song.id}`} className="viewLyrics">View Lyrics</Link>
         </div>
     )
 }

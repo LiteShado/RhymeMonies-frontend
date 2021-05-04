@@ -114,13 +114,9 @@ function App() {
       </Route>
       <Route
         path="/songs/new"
-        exact>
-          { user.id ?
-        <New />
-        :
-        <Redirect to="/users" />
-        }
-      </Route>
+        exact
+        component={New}
+      />
       <Route
         path="/lyrics/:id"
         exact
@@ -133,7 +129,6 @@ function App() {
         }}
         component={SongChoice}
         />
-
 
       {/* <Route
       exact path="/users">
