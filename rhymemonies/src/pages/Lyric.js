@@ -10,6 +10,8 @@ const Lyric = (props) => {
 
     const {userState} = useContext(UserContext)
     const [song,setSong] = userState
+    const [testLyric,setTestLyric] = useState('')
+
 
 
     const [lyric,setLyric] = useState(null)
@@ -25,12 +27,18 @@ const Lyric = (props) => {
 
         const lyric = await axios.get(`${env.API_URL}/lyrics/${props.match.params.id}`)
 
+        console.log(lyric)
+
         let i
 
         const array = lyric.data.lyrics
-        for (i =0; i<array.length; i++) {
+        setLyric(array)
+        console.log(array)
+
+
+        for (i = 0; i<array.length; i++) {
             console.log(array[i].lyric)
-            setLyric(array[i].lyric)
+            // setLyric(array[i].lyric)
             console.log(lyric)
         }
 
@@ -47,10 +55,12 @@ const Lyric = (props) => {
 
 
     const signupSubmit = async (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         // let user = localStorage.getItem('userId')
         let id = localStorage.getItem('userId')
         let idd = props.match.params.id
+
+
         console.log(id)
         console.log(idd)
 
@@ -58,7 +68,7 @@ const Lyric = (props) => {
         console.log(get)
 
         let res = await axios.post(`${env.API_URL}/lyrics/${props.match.params.id}`, {
-            lyric: lyric,
+            lyric: testLyric,
             userId: id,
             songId: idd
         })
@@ -77,7 +87,7 @@ const Lyric = (props) => {
                     console.log(lyrics)
 
                 return (
-                    <li key={res.id}>Lyrics:
+                    <li className="lyricList" key={res.id}>
                         {res.lyric}
                     </li>
                 )
@@ -87,7 +97,7 @@ const Lyric = (props) => {
 
                 <h1>Add Your Lyrics To The Song!</h1>
                 <form onSubmit={signupSubmit}>
-                    <textarea name="lyric" type="text" placeholder="Lyrics" value={lyric} onChange={(e) => setLyric(e.target.value)} />
+                    <input name="lyric" type="text" value={testLyric} onChange={(e) => setTestLyric(e.target.value)} />
 
                     <input name="userId" type="hidden" placeholder="UserId" value={userId} onChange={(e) => setUserId(e.target.value)} />
 

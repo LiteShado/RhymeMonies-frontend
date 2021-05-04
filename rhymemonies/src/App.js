@@ -22,6 +22,7 @@ function App() {
 
   const userInfo = async () => {
     const userId = localStorage.getItem('userId')
+    
 
     try {
       let user = await axios.get('http://localhost:3001/users/profile' ,{
@@ -45,7 +46,6 @@ function App() {
   }, [])
 
   console.log(user)
-  console.log(user.id)
 
   return (
 
@@ -75,7 +75,7 @@ function App() {
         {/* // component={Login} */}
         { user.id ?
         <Redirect to="/songs" />
-        :
+      :
         <Login />
         }
       </Route>

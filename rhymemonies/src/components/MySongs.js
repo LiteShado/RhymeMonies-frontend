@@ -14,7 +14,7 @@ const Songs = () => {
 
     const getUserSongs = async() => {
             try {
-            const res = await axios.get(`${env.API_URL}/users/songs`)
+            const res = await axios.get(`${env.API_URL}/songs/user`)
             console.log(res.data)
             setAllSongs(res.data)
 
