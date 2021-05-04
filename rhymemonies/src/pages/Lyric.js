@@ -21,13 +21,14 @@ const Lyric = (props) => {
         e.preventDefault()
         // let user = localStorage.getItem('userId')
         let id = localStorage.getItem('userId')
-        // let idd = localStorage.getItem('songId')
+        let idd = props.match.params.id
         console.log(id)
-
+        console.log(idd)
 
         let res = await axios.post(`${env.API_URL}/songs/${props.match.params.id}/lyrics`, {
             lyric: lyric,
-            id: id
+            userId: id,
+            songId: idd
         })
         console.log(res)
         localStorage.setItem('lyric', res.data.song.lyric)
@@ -44,7 +45,7 @@ const Lyric = (props) => {
 
                     <input name="userId" type="hidden" placeholder="UserId" value={userId} onChange={(e) => setUserId(e.target.value)} />
 
-                    {/* <input name="songId" type="hidden" placeholder="SongId" value={songId} onChange={(e) => setUserId(e.target.value)} /> */}
+                    <input name="songId" type="hidden" placeholder="SongId" value={songId} onChange={(e) => setUserId(e.target.value)} />
 
                     <input type="submit" value="submit" />
                 </form>
