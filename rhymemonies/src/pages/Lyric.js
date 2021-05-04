@@ -1,4 +1,5 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useContext} from 'react'
+import {UserContext} from '../context/UserContext'
 import axios from 'axios'
 // import Music from '../components/Music'
 import {Link} from 'react-router-dom'
@@ -6,16 +7,51 @@ import {Link} from 'react-router-dom'
 import env from 'react-dotenv'
 import { useParams, Redirect } from 'react-router-dom'
 
-const Lyric = () => {
+const Lyric = (props) => {
 
-//     const[allLyric,setAllLyric] = useState({})
+    const {userState} = useContext(UserContext)
+    const [song,setSong] = userState
 
-//     const params = useParams()
-//     const history = useHistory()
-//     const [shouldRedirect, setShouldRedirect] =
-//     useState(null)
+    const [lyric,setLyric] = useState('')
+    const [userId,setUserId] = useState('')
+    const [songId,setSongId] = useState('')
+    console.log(props)
 
-//     const getAllLyric = () => {
+    const signupSubmit = async (e) => {
+        e.preventDefault()
+        // let user = localStorage.getItem('userId')
+        let id = localStorage.getItem('userId')
+        // let idd = localStorage.getItem('songId')
+        console.log(id)
+
+
+        let res = await axios.post(`${env.API_URL}/songs/${props.match.params.id}/lyrics`, {
+            lyric: lyric,
+            id: id
+        })
+        console.log(res)
+        localStorage.setItem('lyric', res.data.song.lyric)
+
+        setSong(res.data.song)
+    }
+
+    return (
+        <div>
+            <div className="newLyricContainer">
+                <h1>Add Your Lyrics To The Song!</h1>
+                <form onSubmit={signupSubmit}>
+                    <textarea name="lyric" type="text" placeholder="Lyrics" value={lyric} onChange={(e) => setLyric(e.target.value)} />
+
+                    <input name="userId" type="hidden" placeholder="UserId" value={userId} onChange={(e) => setUserId(e.target.value)} />
+
+                    {/* <input name="songId" type="hidden" placeholder="SongId" value={songId} onChange={(e) => setUserId(e.target.value)} /> */}
+
+                    <input type="submit" value="submit" />
+                </form>
+            </div>
+        </div>
+    )
+
 
 //         axios.get(`${env.API_URL}/songs/${params.id}/lyrics`).then((response) => {
 //            console.log(response)

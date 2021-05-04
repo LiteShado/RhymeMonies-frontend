@@ -72,7 +72,7 @@ function App() {
         path="/users"
         exact>
 
-        // component={Login}
+        {/* // component={Login} */}
         { user.id ?
         <Redirect to="/songs" />
         :
