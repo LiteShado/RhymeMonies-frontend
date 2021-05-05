@@ -21,23 +21,35 @@ function App() {
   const [user,setUser] = userState
 
   const userInfo = async () => {
-    const userId = localStorage.getItem('userId')
+  const id = localStorage.getItem('id')
+
+  console.log(id)
+
+    // try {
+    //   let user = await axios.get('http://localhost:3001/users/profile' ,{
+    //   where:{
+    //     id: id
+    //   }
+    //   })
 
 
-    try {
-      let user = await axios.get('http://localhost:3001/users/profile' ,{
-      headers:{
-        authorization: userId
-      }
-    })
+    console.log(id)
 
-    if(user.data.user) {
-      setUser(user.data)
-      console.log(user.data)
+    if(id) {
+      setUser(id)
+      console.log(id)
     }
-    } catch (error) {
-      console.log(error)
-    }
+
+    console.log(user)
+
+
+    // if(user.data.user) {
+    //   setUser(user.data)
+    //   console.log(user.data)
+    // }
+    // } catch (error) {
+    //   console.log(error)
+    // }
 
   }
 
@@ -46,21 +58,12 @@ function App() {
   }, [])
 
   console.log(user)
+  console.log(user.id)
 
   return (
 
     <div>
       <Navbar />
-
-      {/* <Route
-        path="/"
-        exact>
-      { user.id ?
-        <Redirect to="/songs" />
-        :
-        <Home />
-        }
-      </Route> */}
 
       <Route
         path="/"
@@ -73,10 +76,18 @@ function App() {
       </Route>
 
       <Route
+        path="/users/new"
+        exact>
+        { user.id ?
+        <Redirect to="/songs" />
+        :
+        <Signup />
+        }
+        </Route>
+
+      <Route
         path="/users"
         exact>
-
-        {/* // component={Login} */}
         { user.id ?
         <Redirect to="/songs" />
       :
@@ -85,15 +96,25 @@ function App() {
       </Route>
 
       <Route
-        path="/users/new"
-        exact
-        component={Signup}
-      />
+        path="/songs/new"
+        exact>
+        { user.id ?
+       <Redirect to="/songs/new" />
+        :
+      <Login />
+        }
+      </Route>
+
       <Route
         path="/songs/user"
-        exact
-        component={MySongs}
-      />
+        exact>
+        { user.id ?
+        <Redirect to="/songs/user" />
+          :
+        <Login />
+           }
+        </Route>
+
       <Route
         path="/users/profile"
         exact>
@@ -112,11 +133,6 @@ function App() {
         <Redirect to="/users" />
         }
       </Route>
-      <Route
-        path="/songs/new"
-        exact
-        component={New}
-      />
       <Route
         path="/lyrics/:id"
         exact
