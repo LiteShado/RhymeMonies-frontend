@@ -7,7 +7,7 @@ import env from 'react-dotenv'
 // import { Link, useParams } from 'react-router-dom'
 
 
-const Profile = (props) => {
+const Profile = () => {
 
     const[profile, setProfile] = useState(null)
     const id = localStorage.getItem('id')
@@ -20,7 +20,7 @@ const Profile = (props) => {
     const [newProfile, setNewProfile] = useState(null)
 
     console.log(id)
-    console.log(props)
+    console.log(name)
 
 
     const getProfile = async() => {
@@ -48,7 +48,7 @@ const Profile = (props) => {
 
     useEffect(() => {
         getProfile()
-    },[])
+    }, [])
 
 console.log(profile)
 
@@ -68,46 +68,51 @@ const editSubmit = async (e) => {
         console.log(error)
     }
 }
+const handleDelete = async (e) => {
+    try {
+        let resss = await axios.delete(`${env.API_URL}/users/delete`, {
+        email: email
+    })
+    console.log(resss)
+    localStorage.clear()
+    window.location.reload();
 
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 return (
     <>
         <h1>Your Profile Details:</h1>
         <>
-            {profile && ((res) => {
-                console.log(profile)
-                console.log(res)
-                console.log(profile)
-
-                return (
-
-                    <div key={profile.id}>
-                        <div key={profile.id} className="profile">
-                            <div>
-                            {/* {profile.name} |
-                            {profile.email} |
-                            {profile.password} | */}
-                            </div>
-                        </div>
+            {(profile) => {
+                    <div className="profile">
+                            <h2>Name:
+                            {profile.name}</h2>
+                            <h2>Password:
+                            {profile.email}</h2>
                     </div>
-                )
-            })}
+            }}
         </>
 
+            <h1>Edit Your Community Alias: </h1>
+                <form onSubmit={editSubmit}>
+                    <input name="newName" placeholder="Name" type="text" value={newName} onChange={(e) => setNewName(e.target.value)} />
 
-                <h1>Edit Your Community Alias: </h1>
-                    <form onSubmit={editSubmit}>
-                        <input name="newName" placeholder="Name" type="text" value={newName} onChange={(e) => setNewName(e.target.value)} />
+                    <input name="newEmail" placeholder="Email" type="hidden" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
 
-                        <input name="newEmail" placeholder="Email" type="hidden" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
+                    <input name="newPassword" type="hidden" placeholder="UserId" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
 
-                        <input name="newPassword" type="hidden" placeholder="UserId" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+                    <input type="submit" value="submit" />
+                </form>
 
-                        <input type="submit" value="submit" />
-                    </form>
+            <h3 className="deleteTitle"> Delete My Profile </h3>
+                <form onSubmit={handleDelete}>
+                    <input name="newEmail" type="hidden" value={email} onChange={(e) => setNewEmail(e.target.value)} />
 
-
-
+                    <button type="submit" value="submit">delete</button>
+                </form>
         </>
 
     )

@@ -55,7 +55,7 @@ const Lyric = (props) => {
 
 
     const signupSubmit = async (e) => {
-        // e.preventDefault()
+        e.preventDefault()
         // let user = localStorage.getItem('userId')
         let id = localStorage.getItem('userId')
         let idd = props.match.params.id
@@ -130,7 +130,7 @@ const Lyric = (props) => {
 //     }
 
 //     const handleSubmit = (e) => {
-//         e.preventDefault()
+        // e.preventDefault()
 //         axios.post(`${env.API_URL}/songs/${params.id}/lyrics`, lyric).then((response) => {
 //             console.log(response);
 //         })

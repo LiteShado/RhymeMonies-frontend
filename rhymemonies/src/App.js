@@ -66,7 +66,7 @@ function App() {
       <Navbar />
 
       <Route
-        path="/"
+        path=""
         exact>
         { user.id ?
         <Redirect to="/songs" />
@@ -74,6 +74,15 @@ function App() {
       <Home />
         }
       </Route>
+      {/* <Route
+        path="/"
+        exact>
+        { user.id ?
+        <Redirect to="/songs" />
+      :
+      <Home />
+        }
+      </Route> */}
 
       <Route
         path="/users/new"
@@ -87,6 +96,16 @@ function App() {
 
       <Route
         path="/users"
+        exact>
+        { user.id ?
+        <Redirect to="/songs" />
+      :
+        <Login />
+        }
+      </Route>
+
+      <Route
+        path="/users/edit"
         exact>
         { user.id ?
         <Redirect to="/songs" />

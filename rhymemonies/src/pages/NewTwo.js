@@ -26,7 +26,7 @@ const New = () => {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         const res = await axios.post(`${env.API_URL}/songs/new`, song)
         console.log(song)
         console.log(res)
