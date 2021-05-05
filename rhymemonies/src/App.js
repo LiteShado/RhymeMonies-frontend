@@ -1,5 +1,4 @@
 import './App.css';
-import axios from 'axios'
 import { useEffect, useContext} from 'react'
 import {UserContext} from './context/UserContext'
 import Navbar from './components/Navbar'
@@ -12,8 +11,7 @@ import Profile from './pages/Profile'
 import SongChoice from './pages/SongChoice'
 import Home from './pages/Home'
 import Lyric from './pages/Lyric'
-import {Route, Redirect, Switch} from 'react-router-dom'
-import env from 'react-dotenv'
+import {Route, Redirect} from 'react-router-dom'
 
 function App() {
 
@@ -58,7 +56,7 @@ function App() {
   }, [])
 
   console.log(user)
-  console.log(user.id)
+  // console.log(user.id)
 
   return (
 
@@ -115,34 +113,22 @@ function App() {
       </Route>
 
       <Route
-        path="/songs/new"
-        exact>
-        { user.id ?
-       <Redirect to="/songs/new" />
-        :
-      <Login />
-        }
-      </Route>
+        path="/songs/new/submit"
+        exact
+        component={New}
+      />
 
       <Route
         path="/songs/user"
-        exact>
-        { user.id ?
-        <Redirect to="/songs/user" />
-          :
-        <Login />
-           }
-        </Route>
+        exact
+        component={MySongs}
+      />
 
       <Route
         path="/users/profile"
-        exact>
-          { user.id ?
-          <Profile />
-          :
-          <Redirect to="/users" />
-          }
-      </Route>
+        exact
+        component={Profile}
+      />
       <Route
         path="/songs"
         exact>
@@ -157,11 +143,16 @@ function App() {
         exact
         component={Lyric}
       />
-      <Route
+      {/* <Route
         path="/songs/:id"
         exact
         render={(routeInfo) => {
         }}
+        component={SongChoice}
+        /> */}
+      <Route
+        path="/songs/:id"
+        exact
         component={SongChoice}
         />
 

@@ -4,24 +4,24 @@ import axios from 'axios'
 import '../css/Login.css'
 import env from 'react-dotenv'
 
-const New = () => {
+const New = (props) => {
     const {userState} = useContext(UserContext)
     const [song,setSong] = userState
 
     const [title,setTitle] = useState('')
     const [genre,setGenre] = useState('')
-    const [userId,setUserId] = useState('')
+    const [userId, setUserId] = useState('')
 
-    const signupSubmit = async (e) => {
+    const newSong = async (e) => {
         e.preventDefault()
         // let user = localStorage.getItem('userId')
-        let id = localStorage.getItem('userId')
-        console.log(id)
+        let userId = localStorage.getItem('userId')
+        console.log(userId)
 
         let res = await axios.post(`${env.API_URL}/songs/new`, {
             title: title,
             genre: genre,
-            id: id
+            id: userId
         })
         console.log(res)
         localStorage.setItem('title', res.data.song.title)
@@ -32,25 +32,26 @@ const New = () => {
     }
 
     return (
-        <div>
             <div className="newSongContainer">
                 <h1>Add Your Song to the Community!</h1>
-                <form onSubmit={signupSubmit}>
+                <form onSubmit={newSong}>
                     <input name="title" type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+
+                    {/* <input name="title" type="text" placeholder="Title" value={genre} onChange={(e) => setGenre(e.target.value)} /> */}
 
                     <label for="genre">Choose your Genre:</label>
 
-                    <select name="genre" value={genre}>
-                        <option value="Hip Hop" onChange={(e) => setGenre(e.target.value)}>Hip Hop</option>
-                        <option value="Rap"onChange={(e) => setGenre(e.target.value)}>Rap</option>
-                        <option value="Pop"onChange={(e) => setGenre(e.target.value)}>Pop</option>
-                        <option value="RnB" onChange={(e) => setGenre(e.target.value)}>RnB</option>
-                        </select>
-                    <input name="userId" type="hidden" placeholder="UserId" value={userId} onChange={(e) => setUserId(e.target.value)} />
+                    <select name="genre" value={genre} onChange={(e) => setGenre(e.target.value)}>
+                        <option name="Hip Hop">Hip Hop</option>
+                        <option name="Rap">Rap</option>
+                        <option name="Pop">Pop</option>
+                        <option name="RnB">RnB</option>
+                    </select>
+                    <input name="userId" type="hidden" value={userId} onChange={(e) => setUserId(e.target.value)} />
+
                     <input type="submit" value="submit" />
                 </form>
             </div>
-        </div>
     )
 }
 

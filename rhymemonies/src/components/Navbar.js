@@ -23,7 +23,7 @@ const Navbar = (props) => {
             {user.id ?
             <>
             <li ><Link className="navLink" to="/songs">Songs</Link></li>
-            <li ><Link className="navLink" to="/songs/new">Add Song To Community</Link></li>
+            <li ><Link className="navLink" to="/songs/new/submit">Add Song To Community</Link></li>
             <li ><Link className="navLink" to="/songs/user">My Songs</Link></li>
             <li ><Link className="navLink" to="/users/profile">My Profile</Link></li>
             <li  onClick={() => logout()}><Link className="navLink" to="/">Logout</Link></li>
