@@ -11,48 +11,50 @@ const MySongs = (props) => {
 
     console.log(props)
 
-    const {userState} = useContext(UserContext)
-    const[allSongs, setAllSongs] = useState(null)
+    // const {userState} = useContext(UserContext)
+    // const[allSongs, setAllSongs] = useState(null)
 
 
-    const getAllSongs = async() => {
-        try {
-            const res = await axios.get(`${env.API_URL}/songs/user`)
-            console.log(res)
+    const viewSongs = async (e) => {
+        e.preventDefault()
+        // let user = localStorage.getItem('userId')
+        let id = localStorage.getItem('userId')
+        let idd = props.match.params.id
 
-            let i
 
-            const array = res.data
+        console.log(id)
+        console.log(idd)
 
-            setAllSongs(array)
-            console.log(array)
 
-            for (i = 0; i<array.length; i++) {
-                console.log(array[i].res)
-                // setLyric(array[i].lyric)
-                console.log(res)
-            }
+        // console.log(get)
 
-            } catch (error) {
-            console.log(error)
-            }
+        let res = await axios.get(`${env.API_URL}/songs/user`, {
+
+        })
+        console.log(res)
+        // localStorage.setItem('lyric', res.data.song.lyric)
+
+        // setSong(res.data.song)
     }
 
-    useEffect(() => {
-        getAllSongs()
-    },[])
+return (
+    <>
+            <>
+                <form onSubmit={viewSongs}>
+                    {/* <input name="viewSongs" type="hidden" value={none} onChange={(e) => setUserId(e.target.value)}/> */}
 
-    return (
-        <div className="mySongs">
-        <h1>Here Are Your Songs!!</h1>
+                    <button type="submit" value="submit">View My MySongs</button>
+                </form>
+            </>
+            <>
+                <h1>Here Are Your Songs!!</h1>
+                {/* {allSongs && allSongs.map((res, i) => { */}
 
-        {allSongs && allSongs.map((res, i) => {
-            console.log(res)
-        return (
-            <li key={res.id}>
-                <Link to={`/songs/${res.id}`}
-                className="userSongs">
-                {/* <SongChoice
+                return (
+                <li >
+                    <Link
+                    className="userSongs">
+                    {/* <SongChoice
                 key={res.id}
                 song={res.title}
                 // userId={allUserSongs.userId}
@@ -60,13 +62,14 @@ const MySongs = (props) => {
                 // placeholder={allUserSongs.title}
                 />
                 {allSongs.title} | {allSongs.genre}</Link> */}
-            </Link>
-            </li>
-        )
+                        </Link>
+                    </li>
 
-        })}
+                )
 
-        </div>
+            </>
+
+    </>
     )
 
 }

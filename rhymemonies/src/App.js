@@ -119,7 +119,7 @@ function App() {
       />
 
       <Route
-        path="/songs/user"
+        path="/songs/user/list"
         exact
         component={MySongs}
       />
